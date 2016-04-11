@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script language="javascript" src="js/jquery-2.1.3.min.js"></script>-->
+<script language="javascript">
+$(document).ready(function(){
+    $("#pais").empty();
+   $("#pais").change(function () {
+        
+           $("#pais option:selected").each(function () {
+            elegido=$(this).val();
+            $.post("Get_all_pais.php", { elegido: elegido }, function(data){
+            $("#provincia").html(data);
+            
+            });            
+        });
+   });
+//      $(\"#provincia\").change(function () {
+//           $(\"#provincia option:selected\").each(function () {
+//            elegido=$(this).val();
+//            $.post(\"modelos.php\", { elegido: elegido }, function(data){
+//            $(\"#departamento\").html(data);
+//            });            
+//        });
+//   })
+//   $(\"#departamento\").change(function () {
+//           $(\"#departamento option:selected\").each(function () {
+//            elegido=$(this).val();
+//            $.post(\"modelos.php\", { elegido: elegido }, function(data){
+//            $(\"#municipio\").html(data);
+//            });            
+//        });
+//   })
+//   $(\"#municipio\").change(function () {
+//           $(\"#municipio option:selected\").each(function () {
+//            elegido=$(this).val();
+//            $.post(\"modelos.php\", { elegido: elegido }, function(data){
+//            $(\"#ciudad\").html(data);
+//            });            
+//        });
+//   })
+});
+</script>
+    </head>
+    <body>
+        <?php
+          $db = new MySQL();
+        $seleccion = $db->consulta('select * from pais');
+        if ($db->num_rows($seleccion) > 0) {
+            echo "<select name=\"Barrio\">";
+        }
+        while ($row = mysql_fetch_array($seleccion)) {
+              
+        echo "<option value=\"".$row['id_pais']."\">".$row['pais']."</option>";
+        
+        }
+        echo"             </select>"; 
+        ?>
+        <div id="pais">TODO write content</div>
+    </body>
+</html>
