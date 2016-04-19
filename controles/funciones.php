@@ -87,9 +87,8 @@ function navegador() {
   <div class=\"collapse navbar-collapse\">
     <ul class=\"nav navbar-nav\">
         <li ><a  href=\"index.php\" title=\"SADA\" > Home </a></li>
-        <li ><a  href=\"alquileres.php\" title=\"SADA\" > Alquileres </a></li>
         <li><a href=\"agentes.php\" title=\"SADA\" > Agentes </a></li>
-        <li ><a  href=\"Locales\" title=\"SADA\" > Locales</a></li>
+        
     </ul> 
      <ul class=\"nav navbar-nav pull-right\">";
     if (isset($_SESSION['Nombre'])) {

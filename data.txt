@@ -1,1 +1,1 @@
-insert into fotopropiedad (idpropiedad,foto) values (5,'images (20).jpg')select * from fotopropiedad where foto='images (20).jpg' and idpropiedad=5-0existe:2paraquien:propiedad
+update fotopersona set foto='avatar19.jpg' where idpersonas=19select * from fotopersona where idpersonas=19-1existe:1paraquien:avatar

@@ -18,7 +18,7 @@ function inicio(loca) {
 
     var mapOptions = {
         center: new google.maps.LatLng(-26.167002, -58.186986),
-        zoom: 13,
+        zoom: 12,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
