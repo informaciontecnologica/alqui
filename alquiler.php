@@ -12,7 +12,7 @@
                 .carousel-inner > .item > img,
                 .carousel-inner > .item > a > img {
                     width: 400px;
-                    height: 290px;
+                    height: 370px;
                     margin: auto;
                 }
             </style>
@@ -81,7 +81,7 @@
                                                 $act = "";
                                             }
                                             echo " <div class = \"item $act\">";
-                                            echo "<img  src=\"imagenes/Personal/fotos/propiedad/propiedad$idpropiedad/" . $Fotos['foto'] . "\" width=\"450\" height=\"290\"/>";
+                                            echo "<img  src=\"imagenes/Personal/fotos/propiedad/propiedad$idpropiedad/" . $Fotos['foto'] . "\" width=\"450\" height=\"390\"/>";
                                             echo "</div>";
                                         }
                                         ?>    
@@ -101,30 +101,59 @@
                             <div>
                                 <h3>Alquiler</h3>
                                 <div class="panel panel-info">
-<!--                                    <div class="panel-heading">
-                                        
-                                    </div>-->
-                                    
-            
-                                <div class="list-group-item"> Dirección:</div>
-                                <div class="list-group-item">Municipio - Provincia</div>
-                                <div class="list-group-item">Precio:</div>
-                                <div class="list-group-item">Superficie:</div>
-                                <div class="list-group-item"> Cocheras:</div>
-                                <div class="list-group-item"> Baños:</div>
-                                <div class="list-group-item">Ambientes:</div>
-                                <div class="list-group-item">Descripción:</div>
+                                    <!--                                    <div class="panel-heading">
+                                                                            
+                                                                        </div>-->
+
+                                    <?php $row = mysql_fetch_assoc($result) ?>
+                                    <div class="list-group-item">Dirección:<?php echo $row['direccion'] ?></div>
+                                    <div class="list-group-item">Municipio - Provincia</div>
+                                    <div class="list-group-item">Precio:<?php echo $row['valor'] ?></div>
+                                    <div class="list-group-item">Superficie:<?php echo $row['superficie'] ?></div>
+
+                                    <div class="list-group-item">Baños:<?php echo $row['banos'] ?></div>
+                                    <div class="list-group-item">Ambientes:<?php echo $row['habitaciones'] ?></div>
+                                    <div class="list-group-item">Descripción:<?php echo $row['Descripcion'] ?></div>
+                                    <div class="list-group-item">Otros:<?php echo $row['otros'] ?></div>
+                                    <input type="hidden" id="Localizacion" value="<?php echo $row['localizacion'] ?>">
                                 </div>
-                                
+
                             </div>     
                         </div>
 
                         <div class="col-md-4 info">
                             <h3>Ver ubicación</h3>
-                            <!--<div id="map" style="width: 100%; height: 300px;" ></div>-->
+                            <div id="map" style="width: 100%; height: 370px;" ></div>
                         </div> 
                     </div>
-            </article>
+
+                    <div style=" padding:  20px;">  
+                      
+                        <div ng-app="zaza" ng-controller="envio" class="row">
+
+                            <div class="row">
+                                <label for="ejemplo_email_3" class="col-md-2 control-label">Email</label>
+                                <div class="col-md-6">
+                                    <input type="email" ng-model="mail" class="form-control col-md-6" id="ejemplo_email_3" placeholder="Email"
+                                           value="<?php echo $_SESSION['mail']?>">
+                                </div>
+                            </div>
+                            <div class="row" >
+                                <label  class="col-lg-2 control-label">Mensaje</label>
+                                <div class="col-md-5">
+                                   <textarea ng-model="mensaje" class="col-md-7 form-control" >Usuario:<?php echo $_SESSION['Nombre'] ?> </textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="text-right col-md-7 ">
+                                    <button ng-click="mensajes();" class="btn btn-default">Enviar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                </div>
+
+                <?php include "pie.php"; ?>
         </body>
     </html>
     <script src="js/alquiler.js" type="text/javascript"></script>

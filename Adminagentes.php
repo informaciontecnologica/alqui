@@ -271,7 +271,7 @@ and open the template in the editor.
 
             if (isset($_POST["Agente"])) {
                 $idpersonas = $_POST["idpersona"];
-                echo $idpersonas;
+//                echo $idpersonas;
                 $idusuario = $_POST["usuario"];
                 $documento = $_POST["documento"];
                 $nombre = utf8_decode($_POST["nombre"]);
@@ -327,7 +327,7 @@ and open the template in the editor.
                             . " idmunicipio=$id_municipio, iddepartamento=$id_departamento, "
                             . "idprovincia=$id_provincia , idpais=$id_pais"
                             . " where idpersonas=$idpersonas";
-                    echo $sql . "<br>" . $perfil;
+//                    echo $sql . "<br>" . $perfil;
                     $Actualizar = $ActualiPersona->consulta($sql);
                     $ActPerfil = new MySQL();
                     $sql = "update usuario set id_perfil=$perfil , mail='$mail' where id_usuario=$idusuario";

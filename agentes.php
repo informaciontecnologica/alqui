@@ -21,12 +21,6 @@ and open the template in the editor.
         $consulta = mysql_db_query("sada", $query) or die('Consulta fallida: ' . mysql_error());
         $sele = mysql_num_rows($consulta);
         ?>
-
-
-
-
-
-
         <header>
             <?php navegador(); ?>
         </header>
@@ -70,9 +64,10 @@ and open the template in the editor.
 
                             </div>
                         </div>
-    <?php }
-};
-?>
+                    <?php
+                    }
+                };
+                ?>
             </div>
 
 

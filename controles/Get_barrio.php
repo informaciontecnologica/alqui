@@ -7,7 +7,7 @@
  */
 
 require_once 'clase_barrio.php';
-$postdata = file_get_contents("php://input");
+   $postdata = file_get_contents("php://input");
     $request = json_decode($postdata);
      
     $pais =$request->pais;//$_POST['pais'];

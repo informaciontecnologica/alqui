@@ -9,7 +9,7 @@ $(document).ready(function (e) {
 
     $("#uploadimage").on('submit', (function (e) {
         e.preventDefault();
-     
+
         $("#message").empty();
         $('#loading').show();
         $.ajax({
@@ -21,7 +21,7 @@ $(document).ready(function (e) {
             processData: false, // To send DOMDocument or non processed data file it is set to false
             success: function (data)   // A function to be called if request succeeds
             {
-            console.log(data);
+                console.log(data);
                 $('#loading').hide();
                 $("#message").html(data);
 
@@ -32,7 +32,7 @@ $(document).ready(function (e) {
 // Function to preview image after validation
     $(function () {
         $("#file").change(function () {
-              
+
             $("#message").empty(); // To remove the previous error message
             var file = this.files[0];
             var imagefile = file.type;
@@ -45,7 +45,7 @@ $(document).ready(function (e) {
             }
             else
             {
-                
+
                 var reader = new FileReader();
                 reader.onload = imageIsLoaded;
                 reader.readAsDataURL(this.files[0]);
@@ -58,14 +58,15 @@ $(document).ready(function (e) {
         $('#previewing').attr('src', e.target.result);
         $('#previewing').attr('width', '250px');
         $('#previewing').attr('height', '230px');
-    };
-    
+    }
+    ;
+
     function imagenborrar(e) {
         $('#previewing').attr('src', 'imagenes/Personal/fotos/avatar/noimage.png');
         $('#previewing').attr('width', '250px');
         $('#previewing').attr('height', '230px');
         $('#file').val('');
-        
+
 
     }
     $('#cancelar').click(function () {
@@ -73,4 +74,23 @@ $(document).ready(function (e) {
 
 
     });
+
+
+   
+
+
+
+
+function selectCountry(val, val2) {
+    $("#search-box").val(val2);
+    $('#idpersonas').val(val);
+    $("#suggesstion-box").hide();
+    var idpersonas = $(val);
+
+
+}
+
+
+    
+
 });

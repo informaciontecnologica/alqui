@@ -3,7 +3,7 @@
 function moza($result) { ?>
     <div class="container " style="background-color: #afd9ee ; ">
         <?php
-            
+          
         if (mysql_num_rows($result) > 0) {
             while ($fila = mysql_fetch_assoc($result)) {
                 $idp = $fila['idpropiedad'];
@@ -45,7 +45,7 @@ function moza($result) { ?>
                             <div class="col-md-8">
                                 <img src="imagenes/icons/icon-bath.png"  title="Baños" alt="ssssss"/><?php echo $fila["banos"]; ?>
                                 <img src="imagenes/icons/icon-bed.png" title="Habitaciones" alt=""/><?php echo $fila["habitaciones"]; ?>
-                                <img src="imagenes/icons/icon-car.png" title="Cocheras" alt=""/>1
+                                
                             </div>
                         </div>
                     </div>

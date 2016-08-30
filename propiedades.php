@@ -8,8 +8,9 @@
             include'controles/cookies.php';
             ?>
             <link href="style.css" rel="stylesheet" type="text/css"/>
+
             <script src="http://maps.googleapis.com/maps/api/js"></script>
-           <style type="text/css">
+            <style type="text/css">
                 #map_canvas {
                     position: relative;
                 }
@@ -21,6 +22,19 @@
                     left: 0;
                 }
             </style>
+            <script>
+                function aa(val, val2) {
+                    $("#search-box").val(val2);
+//    $('#idpersonas').val(val);
+                    $("#suggesstion-box").hide();
+                    var idpersonas = $(val);
+
+
+                }
+                ;
+
+
+            </script> 
         </head>
         <body  ng-controller="customersCtrl"  >
             <header>
@@ -70,7 +84,7 @@
                                         </th>
                                         <th>
                                             Baños
-                                            
+
                                         </th>
                                         <th>
                                             Habit.
@@ -78,9 +92,14 @@
                                         <th>
                                             Piletas
                                         </th>
-                                     
-                                          <th>
-                                            Imagenes
+                                        <th>
+                                            Valor Alq.
+                                        </th>
+                                        <th>
+                                            Tipo
+                                        </th>
+                                        <th>
+                                            Fotos
                                         </th>
                                         <th>
                                             Editar
@@ -114,21 +133,37 @@
                                         <td>
                                             {{x.pileta}} 
                                         </td>
-                                     
+                                        <td>
+                                            {{x.monto}} 
+                                        </td>
                                         <td>
                                             <span ng-if="myVar(x.tipopropiedad_id_tipoPropiedad)">{{ca}}</span>
                                         </td>
                                         <td>
-                                            <button class="btn"  ng-click="fotos(x.idpropiedad)">
+                                            <button class="btn"  ng-click="fotos(x.idpropiedad)" >
                                                 <span class="glyphicon glyphicon-picture">Fotos</span>
                                             </button>
                                         </td>
                                         <td>
                                             <button class="btn"   ng-click="editar(x.idpropiedad)">
-                                               <span class="glyphicon glyphicon-pencil">Editar</span>
+                                                <span class="glyphicon glyphicon-pencil">Editar</span>
                                             </button>  
                                         </td>
-                                   
+                                        <td>
+
+                                            <a class="btn" data-toggle="modal" data-target="#DetaAlquile"
+                                               data-idpropiedad="{{x.idpropiedad}}"
+                                               data-descripcion="{{x.Descripcion}}"
+                                               data-superficie="{{x.superficie}}"
+                                               data-direccion="{{x.direccion}}"
+                                               data-monto="{{x.valor}}"
+                                               data-estado="{{x.estado}}">
+                                                <span class="glyphicon glyphicon-ok">{{x.estado}}</span>
+                                            </a>  
+
+                                        </td>
+
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -343,13 +378,13 @@
                         <div class="col-md-4 bg-success">
 
                             <h4>Subir Fotos</h4>
-                              <form   id="uploadimage" method="post" action=""  ENCTYPE="multipart/form-data" class="form-horizontal" role="form" ng-show="Nuevo">                                
-                            <div class="form-group">
-                                <div id="image_preview">
-                                    <img id="previewing"  src="imagenes/Personal/fotos/avatar/noimage.png" class="img-thumbnail" />
+                            <form   id="uploadimage" method="post" action=""  ENCTYPE="multipart/form-data" class="form-horizontal" role="form" ng-show="Nuevo">                                
+                                <div class="form-group">
+                                    <div id="image_preview">
+                                        <img id="previewing"  src="imagenes/Personal/fotos/avatar/noimage.png" class="img-thumbnail" />
+                                    </div>
                                 </div>
-                            </div>
-                          <hr id="line">
+                                <hr id="line">
                                 <input type="hidden" value="{{propiedad}}" name="idpropiedad"  />
                                 <div class="form-group">
                                     <input type="file" class="btn btn-primary " required  type="button" name="file" id="file" />                               
@@ -360,100 +395,219 @@
                                 </div>
                             </form>
 
-
-<!--************************************ Modal Foto *************************************-->
                         </div>
-                        <div class="modal fade " id="mama" role="dialog">
-                            <div class="modal-dialog modal-lg">
-                                <!-- Modal content-->
-                                <div class="modal-content col-md-12">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Modal Header</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <img  src="" id="venta" 
-                                              class="modalfoto" alt=""  >
-                                        <span ></span>
-                                    </div>
-                                    <button type="button"  id="borrar" class="glyphicon glyphicon-remove">Borrar</button>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                    <!--************************************ Modal Foto *************************************-->
 
-                                    </div>
+                    <div class="modal fade " id="mama" tabindex="-2" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal content-->
+                            <div class="modal-content col-md-12">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Modal Header</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <img  src="" id="venta" 
+                                          class="modalfoto" alt=""  >
+                                    <span ></span>
+                                </div>
+                                <button type="button"  id="borrar" class="glyphicon glyphicon-remove">Borrar</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
                                 </div>
                             </div>
                         </div>
-                    </div>    
+                    </div>
+
 
                     <div id="map" style="width: 100%; height: 300px;" ></div>
 
-                    <?php
-//
-                    if (isset($_POST["Agregar"])) {
-                        $FPublicacion = $_POST["FPublicacion"];
-                        $superficie = utf8_decode($_POST["superficie"]);
-                        $direccion = utf8_decode($_POST["direccion"]);
-                        $valor = $_POST["valor"];
-                        $descripcion = $_POST["Descripcion"];
-                        $banos = $_POST["banos"];
-                        $habitaciones = $_POST["habitaciones"];
-                        $pileta = $_POST["pileta"];
-                        $otros = $_POST["otros"];
-                        $tipopropiedad = after(':', $_POST["tipopropiedad"]);
-                        $id_pais = after(':', $_POST["pais"]);
-                        $id_provincia = after(':', $_POST["provincia"]);
-                        $id_departamento = after(':', $_POST["departamento"]);
-                        $id_municipio = after(':', $_POST["municipio"]);
-                        $id_ciudad = after(':', $_POST["ciudad"]);
-                        $id_barrio = after(':', $_POST["barrio"]);
-                        $localizacion = $_POST["localizacion"];
+                    <!--************************************Detalle de alquiler ********************************-->
+                    <link rel="stylesheet" type="text/css"
+                          href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" />
 
-                        /*                         * *         nueva persona */
-                        if ((isset($_POST["Agregar"])) && ($_POST['Agregar'] == "Agregar")) {
-                            $NuevoProp = new MySQL();
-                            $sql = "INSERT INTO `propiedades`( `FPublicacion`, `superficie`, `direccion`, `valor`,"
-                                    . "`Descripcion`, `banos`, `habitaciones`, `pileta`, `otros`, `tipopropiedad_id_tipoPropiedad`"
-                                    . ", `idbarrio`, `idciudad`, `idmunicipio`, `iddepartamento`, `idprovincia`, `idpais`, `localizacion`)"
-                                    . "VALUES ('$FPublicacion',$superficie, '$direccion', $valor,"
-                                    . "'$descripcion', $banos, $habitaciones, '$pileta', '$otros', $tipopropiedad"
-                                    . ", '$id_barrio', '$id_ciudad', '$id_municipio', '$id_departamento', '$id_provincia', '$id_pais'"
-                                    . ",'$localizacion')";
-//                            echo $sql . "<br>" . $FPublicacion . "<br>";
-                            $insertar = $NuevoProp->consulta($sql);
+                    <div class="modal fade " id="DetaAlquile" tabindex="-1"  role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Modal title</h4>
+
+                                </div>
+
+                                <div class="modal-body">
+                                 
+                                </div>
+                                <div class="modal-footer"></div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .ui-autocomplete {
+                            z-index: 5000;
+
+                        }    
+
+                        #suggesstion-box ul{
+                            position:relative;
                         }
+                        #suggesstion-box li:hover {
+                            color: #286090;
+                            cursor:pointer;
+                        }
+                        #suggesstion-box ul  {
+                            position:absolute;
+                            top:100%;
+                            z-index:10;
+                            list-style: none;
+                            padding-right: 10px;
+                            border:solid 1px #6a87ab;
+                            -moz-border-radius-topleft: 8px;
+                            -moz-border-radius-topright:8px;
+                            -moz-border-radius-bottomleft:8px;
+                            -moz-border-radius-bottomright:8px;
+                            -webkit-border-top-left-radius:8px;
+                            -webkit-border-top-right-radius:8px;
+                            -webkit-border-bottom-left-radius:8px;
+                            -webkit-border-bottom-right-radius:8px;
+                            border-top-left-radius:8px;
+                            border-top-right-radius:8px;
+                            border-bottom-left-radius:8px;
+                            border-bottom-right-radius:8px;
+                            background-color: rgba(10, 128, 255, 0.2);
+                            background: rgba(10, 128, 255, 0.8);
+
+                        }
+                    </style>    
+
+
+
+
+                    //*********************** Atención ********************************************************
+                    <div id="subscription-confirm" class="modal fade" >
+                        <div class="modal-dialog">   
+                            <div class="modal-content"> 
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h3 class=" info">Atención</h3>
+                                </div>
+                                <div class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button  id="guardar" class="btn btn-success">Guardar</button>
+                                    <button  data-dismiss="modal" class="btn">Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--************************************Detalle de alquiler ********************************-->
+
+                    <div class="modal fade " id="dialogo" tabindex="-2" role="dialog" aria-labelledby="mySmallModalLabel">
+                        <div class="modal-dialog modal-sm">
+                            <!-- Modal content-->
+                            <div class="modal-content ">
+                                <div class="modal-header">
+
+                                    <h4 class="modal-title info">Dialogo</h4>
+                                </div>
+                                <div class="modal-body">
+
+                                    <span></span>
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button"  id="borrar" class="btn btn-primary">Acepta</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancela</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                </div> 
+
+                <?php
+//
+                if (isset($_POST["Agregar"])) {
+                    $FPublicacion = $_POST["FPublicacion"];
+                    $superficie = utf8_decode($_POST["superficie"]);
+                    $direccion = utf8_decode($_POST["direccion"]);
+                    $valor = $_POST["valor"];
+                    $descripcion = $_POST["Descripcion"];
+                    $banos = $_POST["banos"];
+                    $habitaciones = $_POST["habitaciones"];
+                    $pileta = $_POST["pileta"];
+                    $otros = $_POST["otros"];
+                    $tipopropiedad = after(':', $_POST["tipopropiedad"]);
+                    $id_pais = after(':', $_POST["pais"]);
+                    $id_provincia = after(':', $_POST["provincia"]);
+                    $id_departamento = after(':', $_POST["departamento"]);
+                    $id_municipio = after(':', $_POST["municipio"]);
+                    $id_ciudad = after(':', $_POST["ciudad"]);
+                    $id_barrio = after(':', $_POST["barrio"]);
+                    $localizacion = $_POST["localizacion"];
+
+                    /*                     * *         nueva persona */
+                    if ((isset($_POST["Agregar"])) && ($_POST['Agregar'] == "Agregar")) {
+                        $NuevoProp = new MySQL();
+                        $sql = "INSERT INTO `propiedades`( `FPublicacion`, `superficie`, `direccion`, `valor`,"
+                                . "`Descripcion`, `banos`, `habitaciones`, `pileta`, `otros`, `tipopropiedad_id_tipoPropiedad`"
+                                . ", `idbarrio`, `idciudad`, `idmunicipio`, `iddepartamento`, `idprovincia`, `idpais`, `localizacion`)"
+                                . "VALUES ('$FPublicacion',$superficie, '$direccion', $valor,"
+                                . "'$descripcion', $banos, $habitaciones, '$pileta', '$otros', $tipopropiedad"
+                                . ", '$id_barrio', '$id_ciudad', '$id_municipio', '$id_departamento', '$id_provincia', '$id_pais'"
+                                . ",'$localizacion')";
+//                            echo $sql . "<br>" . $FPublicacion . "<br>";
+                        $insertar = $NuevoProp->consulta($sql);
                     }
+                }
 
-                    if (isset($_POST["Modificar"])) {
-                        $FPublicacion = $_POST["FPublicacion"];
-                        $superficie = utf8_decode($_POST["superficie"]);
-                        $direccion = utf8_decode($_POST["direccion"]);
-                        $valor = $_POST["valor"];
-                        $descripcion = $_POST["Descripcion"];
-                        $banos = $_POST["banos"];
-                        $habitaciones = $_POST["habitaciones"];
-                        $pileta = $_POST["pileta"];
-                        $otros = $_POST["otros"];
-                        $tipopropiedad = after(':', $_POST["tipopropiedad"]);
-                        $id_pais = after(':', $_POST["pais"]);
-                        $id_provincia = after(':', $_POST["provincia"]);
-                        $id_departamento = after(':', $_POST["departamento"]);
-                        $id_municipio = after(':', $_POST["municipio"]);
-                        $id_ciudad = after(':', $_POST["ciudad"]);
-                        $id_barrio = after(':', $_POST["barrio"]);
-                        $localizacion = $_POST["localizacion"];
+                if (isset($_POST["Modificar"])) {
+                    $FPublicacion = $_POST["FPublicacion"];
+                    $superficie = utf8_decode($_POST["superficie"]);
+                    $direccion = utf8_decode($_POST["direccion"]);
+                    $valor = $_POST["valor"];
+                    $descripcion = $_POST["Descripcion"];
+                    $banos = $_POST["banos"];
+                    $habitaciones = $_POST["habitaciones"];
+                    $pileta = $_POST["pileta"];
+                    $otros = $_POST["otros"];
+                    $tipopropiedad = after(':', $_POST["tipopropiedad"]);
+                    $id_pais = after(':', $_POST["pais"]);
+                    $id_provincia = after(':', $_POST["provincia"]);
+                    $id_departamento = after(':', $_POST["departamento"]);
+                    $id_municipio = after(':', $_POST["municipio"]);
+                    $id_ciudad = after(':', $_POST["ciudad"]);
+                    $id_barrio = after(':', $_POST["barrio"]);
+                    $localizacion = $_POST["localizacion"];
 
-                        $idpropiedad = $_POST['idpropiedad'];
-                        $ModiProp = new MySQL();
-                        $sql = "update  `propiedades` set `FPublicacion`='$FPublicacion', `superficie`=$superficie, `direccion`='$direccion', `valor`=$valor,"
-                                . "`Descripcion`='$descripcion', `banos`=$banos, `habitaciones`=$habitaciones, `pileta`='$pileta', `otros`='$otros', `tipopropiedad_id_tipoPropiedad`=$tipopropiedad"
-                                . ", `idbarrio`='$id_barrio', `idciudad`='$id_ciudad', `idmunicipio`='$id_municipio', `iddepartamento`='$id_departamento', `idprovincia`='$id_provincia'"
-                                . ", `idpais`='$id_pais', `localizacion`='$localizacion' where idpropiedad=$idpropiedad";
+                    $idpropiedad = $_POST['idpropiedad'];
+                    $ModiProp = new MySQL();
+                    $sql = "update  `propiedades` set `FPublicacion`='$FPublicacion', `superficie`=$superficie, `direccion`='$direccion', `valor`=$valor,"
+                            . "`Descripcion`='$descripcion', `banos`=$banos, `habitaciones`=$habitaciones, `pileta`='$pileta', `otros`='$otros', `tipopropiedad_id_tipoPropiedad`=$tipopropiedad"
+                            . ", `idbarrio`='$id_barrio', `idciudad`='$id_ciudad', `idmunicipio`='$id_municipio', `iddepartamento`='$id_departamento', `idprovincia`='$id_provincia'"
+                            . ", `idpais`='$id_pais', `localizacion`='$localizacion' where idpropiedad=$idpropiedad";
 
 //                        echo $sql . "<br>" . $idpropiedad . "<br>";
-                        $insertar = $ModiProp->consulta($sql);
-                    }
-                    
+                    $insertar = $ModiProp->consulta($sql);
+                }
+
 //                    $ultimoid = new MySQL();
 //                    $cade = "SELECT MAX(idpersonas) AS id FROM personas";
 //                    $veri = $ultimoid->consulta($cade);
@@ -467,12 +621,14 @@
 //                    $ActPerfil = new MySQL();
 //                    $sql = "update usuario set id_perfil=$perfil , mail='$mail' where id_usuario=$idusuario";
 //                    $Actp = $ActPerfil->consulta($sql);
-                    ?>
-                    <?php include 'pie.php'; ?>
-                </div>
-                <div id="dialog">Se a borrado</div>
+                ?>
+                <?php include 'pie.php'; ?>
+            </div>
+            <div id="dialog">Se a borrado</div>
         </body>
         <script src="js/propiedades.js" type="text/javascript"></script>
         <script src="js/modalfotos.js" type="text/javascript"></script>
         <script src="script.js" type="text/javascript"></script>
+
+
     </html>

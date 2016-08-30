@@ -7,10 +7,7 @@
  */
 
  require_once 'config_inc.php';
- Class propiedad {
-//                private $idpropiedad; //int(11)
-//                private $FPublicacion; //varchar(100)
-               
+ Class sinPropiedades {
                 private $db;
 
     public function __construct(){
@@ -21,16 +18,18 @@
         unset($this);
     }
 
-          public function Get_propiedad(){
-          // realia la nueva consulta
-         $sql = "SELECT p.idpropiedad as id ,pa.*, a.* ,p.* FROM `propiedades` p left join `propiedades alquileres` pa on p.idpropiedad=pa.idpropiedad left join alquileres a on pa.idalquileres=a.idalquiler order by id";
+  
+          public function Get_sin_Propiedades(){
+          
+          $sql = "select p.* from propiedades p left join propiedad_persona pp on  p.idpropiedad=pp.idpropiedad
+where pp.idpropiedad is null";
           $result = $this->db->prepare($sql);
           $result->execute(); 
           $count = $result->rowCount();
           if($count!= 0 ) {
                 while($row = $result->fetch(PDO::FETCH_ASSOC)){
                        $DataEvents[] = array(
-                          'idpropiedad' => $row['id'],
+                          'idpropiedad' => $row['idpropiedad'],
                            'FPublicacion'=> $row['FPublicacion'],
                            'superficie'=> $row['superficie'], 
                            'direccion'=> $row['direccion'], 
@@ -47,13 +46,7 @@
                            'iddepartamento'=> $row['iddepartamento'],
                            'idprovincia'=> $row['idprovincia'],
                            'idpais' => $row['idpais'],
-                           'localizacion' => $row['localizacion'],
-                           'idalquiler' => $row['idalquiler'],
-                           'monto' => $row['monto'],
-                           'fecha_Activa' => $row['fecha_Activa'],
-                           'descripcion' => $row['descripcion'],
-                           'estado' => $row['estado'],
-                           'idAlquileres' => $row['idalquileres']
+                           'localizacion' => $row['localizacion']
                   );
 
               }
@@ -65,6 +58,5 @@
               return 0;
            }
       }
-
 }
 ?>

@@ -86,10 +86,6 @@ var myApp = angular.module('myApp', []);
 myApp.controller('customersCtrl', function ($scope, $http, $log, $filter) {
     
 
-    
-    
-
-
  $scope.alquilerEstado= function (){
        $http.post("controles/Get_Propiedad_alquileres.php", {
        }).success(function (responses) {
@@ -107,6 +103,17 @@ myApp.controller('customersCtrl', function ($scope, $http, $log, $filter) {
       };
    
     //******
+    
+          $scope.DetaAlquiler = function(idpropiedad){
+         $http.post("controles/Get_foto.php", {
+             idpropiedad: idpropiedad 
+              }).success(function (responses) {
+             $scope.Rfotos = responses.fotopropiedad;
+           });
+      };
+      
+      //*********************
+    
     $scope.Listado = true;
     $scope.cancelar = false;
     $scope.registros= false;
@@ -277,7 +284,7 @@ myApp.controller('customersCtrl', function ($scope, $http, $log, $filter) {
     
     $scope.myVar =function (id){
    
-//        $filter('filter')($scope.propiedades, {idpropiedad: id});
+//      $filter('filter')($scope.propiedades, {idpropiedad: id});
          $scope.Ti=$filter('filter')($scope.Tipopropiedades,{idtipopropiedad:id});
          $scope.ca=$scope.Ti[0].Tipo;
  

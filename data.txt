@@ -1,1 +1,1 @@
-update fotopersona set foto='avatar19.jpg' where idpersonas=19select * from fotopersona where idpersonas=19-1existe:1paraquien:avatar
+insert into fotopersona (idpersonas,foto) values (18,'avatar18.jpg')select * from fotopersona where idpersonas=18-0existe:2paraquien:avatar

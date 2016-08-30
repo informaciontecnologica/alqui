@@ -4,12 +4,13 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html  ng-app="myApp" >
     <head>
+        
         <?php
         include'controles/cabezera.php';
         include 'controles/funciones.php';
-       include'controles/cookies.php';
+        include'controles/cookies.php';
         ?>
 
 
@@ -17,7 +18,7 @@ and open the template in the editor.
         <link href="style.css" rel="stylesheet" type="text/css"/>
 
     </head>
-  <body ng-app="myApp" ng-controller="customersCtrl">
+  <bodyng-controller="customersCtrl">
         <header>
             <?php navegador(); ?>
         </header>
@@ -31,23 +32,25 @@ and open the template in the editor.
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-12" >
-                        <h3 ng-show="Nuevo">Nuevo Usuarios:</h3>
-                        <h3 ng-show="!Listado">Edit Usuarios:</h3>
+                    <div class="col-md-12 col-lg-offset-5" >
+                        <h3>Usuarios:</h3>
+                        <h4 ng-show="Nuevo">Nuevo Usuarios:</h4>
+                        <h4 ng-show="Listado">Edit Usuarios:</h4>
                        
                             <form id="usuarios" action="" method="post"  class="form-horizontal" role="form">
                                 <div class="form-group"  >
-                                    <label>nombre</label>
+                                    <label>Nombre</label>
                                     <input type="text" ng-model="nombre" name="nombre"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>clave</label>
+                                    <label>Clave</label>
                                     <input type="password" ng-model="clave" name="clave"/>
                                 </div> 
                                 <div class="form-group">
                                     <input type="submit" name="aceptar" value="Aceptar" />
                                 </div>
                             </form>
+                    </div>
                     </div>
 
 

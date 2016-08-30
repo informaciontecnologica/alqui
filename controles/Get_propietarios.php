@@ -1,3 +1,5 @@
+<?php
+
 /* 
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,11 +7,7 @@
  */
 
 
-var myApp = angular.module('myApp', []);
-myApp.controller('customersCtrl', function ($scope, $http, $log, $filter) {
-   $scope.Nuevo=false;
-   $scope.Listado=false;
-   
-    
-    
-});
+   require_once 'clase_propietario.php';
+    $Events = new propietario();
+    $data = $Events->Get_propietario();
+     echo $data;

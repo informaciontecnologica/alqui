@@ -7,7 +7,7 @@
  */
 session_start();
 /* Establecemos que las paginas no pueden ser cacheadas */
-header("Expires: Tue, 01 Jul 2016 06:00:00 GMT");
+header("Expires: Tue, 01 Jul 2019 06:00:00 GMT");
 header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 header("Cache-Control: no-store, no-cache, must-revalidate");
 header("Cache-Control: post-check=0, pre-check=0", false);
@@ -95,15 +95,16 @@ function navegador() {
         
         echo "<li><a href=\"#\" > <span class=\"badge\">".$_SESSION['Nombre']."</span></a></li>"
         . "<li><a href=\"perfil.php\" title=\"perfil\" >Perfil</a></li>"
-        . "<li><a href=\"propiedades.php\" title=\"Propiedades \" >Propiedades</a></li>"
-        . "<li> <a  href=\"noticias.php\" title=\"Noticias\" >Noticias</a></li>";
+        . "<li><a href=\"Alquileres.php\" title=\"perfil\" >Alquileres</a></li>"                
+        . "<li><a href=\"propiedades.php\" title=\"Propiedades\" >Propiedades</a></li>"
+        . "<li><a href=\"propietarios.php\" title=\"Propietarios\" >Propietarios</a></li>";
         
                        
     // verifica si pertenece a un perfil determinado
    switch ($_SESSION['perfil']) {
     case 1:
-       echo "<li> <a  href=\"usuarios.php\" title=\"Usuarios \" >Usuarios</a></li>";
-    echo "<li> <a  href=\"Adminagentes.php\" title=\"Agentes\" >Agentes</a></li>";
+       echo "<li> <a  href=\"Adminagentes.php\" title=\"Usuarios \" >Usuarios</a></li>";
+    
     break;
     case 2:
       echo "<li> <a  href=\"seguimientos.php\" title=\"Seguimientos\" >Seguimientos</a></li>"; 
@@ -249,32 +250,36 @@ function buscadores(){
                    echo "<div class=\"form-group\">
                         <label class=\"sel1\" style=\"padding:5px;\" >Ambientes: </label>
                         <select class=\"form-control\" name=\"Habitaciones\"> 
-                            <option value\"0\">Todos</option>
-                            <option value\"1\">1</option>
-                            <option value\"2\">2</option>
-                            <option value\"3\">3</option>
-                            <option value\"3+\">3+</option>
+                            <option value=\"0\">Todos</option>
+                            <option value=\"1\">1</option>
+                            <option value=\"2\">2</option>
+                            <option value=\"3\">3</option>
+                            
                         </select>
                     </div>";
 
                    echo "<div class=\"form-group\">
                         <label class=\"sel1\" style=\"padding:5px;\" >Min: </label>
                         <select class=\"form-control\" name=\"min\"> 
-                            <option value\"1\">Todos</option> 
-                            <option value\"1000\">1000</option>
-                            <option value\"2000\">2000</option>
-                            <option value\"3000\">3000</option>
-                            <option value\"+3000\">+3000</option>
+                            <option value=\"0\">Todos</option> 
+                            <option value=\"1000\">1000</option>
+                            <option value=\"2000\">2000</option>
+                            <option value=\"3000\">3000</option>
+                            
                         </select>
                     </div>";
                    echo "<div class=\"form-group\">
                         <label class=\"sel1\" style=\"padding:5px;\">Max: </label>
                         <select class=\"form-control\" name=\"max\"> 
-                            <option value\"1\">Todos</option> 
-                            <option value\"1000\">1000</option>
-                            <option value\"2000\">2000</option>
-                            <option value\"3000\">3000</option>
-                            <option value\"+3000\">+3000</option>
+                            <option value=\"0\">Todos</option> 
+                            <option value=\"1000\">1000</option>
+                            <option value=\"2000\">2000</option>
+                            <option value=\"3000\">3000</option>
+                            <option value=\"4000\">4000</option>
+                            <option value=\"6000\">6000</option>
+                            <option value=\"8000\">8000</option>
+                            <option value=\"12000\">12000</option>
+                            <option value=\"15000\">15000</option>
                         </select>
                    </div>
                     <div <div class=\"form-group\" style=\"padding:5px;\">

@@ -27,7 +27,7 @@ $scope.archivo="noimage.png";
     });
 
 // ***********************   Consulta de pais, provinica, departamento , muniicpio , ciudad , barrio 
-    $http.get("controles/get_all_pais.php").success(function (response) {
+    $http.get("controles/Get_all_pais.php").success(function (response) {
         $scope.paises = response.pais;
     });
 
@@ -135,7 +135,8 @@ $scope.archivo="noimage.png";
         {name: 'Gerencia', id: '2'},
         {name: 'Analista', id: '3'},
         {name: 'Usuario', id: '4'},
-        {name: 'Nulo', id: '5'}
+        {name: 'Propietario', id: '5'},
+        {name: 'Nulo', id: '6'}
     ];
     $scope.userInit = function (uid, role) {
         $scope.user = uid;

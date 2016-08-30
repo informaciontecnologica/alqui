@@ -13,6 +13,7 @@ echo "
         <link href=\"plantillas/inicio.css\" rel=\"stylesheet\" type=\"text/css\"/>
         <title>SADA Sistema de Alquileres</title>
         <script src=\"jquery/jquery-2.1.3.min.js\" type=\"text/javascript\"></script>
+         <script src=\"//code.jquery.com/ui/1.11.4/jquery-ui.js\"></script>
         <script src=\"jquery/angular.min.js\" type=\"text/javascript\"></script>
         
   ";     

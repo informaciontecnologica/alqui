@@ -19,10 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $seleccion = $db->consulta($sql);
             while ($resultados = $db->fetch_array($seleccion)) {
                 $registro = $resultados['nombre_usuario'];
-                $registro = htmlentities($registro);
+//                $registro = htmlentities($registro);
                 
                 $_SESSION['Nombre'] = $registro;
-                $_SESSION['mail']=htmlentities($registro['mail']);
+                $_SESSION['mail']=$resultados['mail'];
                 $_SESSION['perfil'] = $resultados['id_perfil'];
                 $_SESSION['userAgent'] = $_SERVER['HTTP_USER_AGENT'];
                 $_SESSION['SKey'] = uniqid(mt_rand(), true);

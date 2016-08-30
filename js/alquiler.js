@@ -4,6 +4,21 @@
  * and open the template in the editor.
  */
 'use strict';
+var app = angular.module('zaza', []);
+
+
+app.controller('envio', function ($scope, $http ) {
+  
+        $scope.mensajes = function () {
+             var data = {
+                'de':$scope.mail,
+                 'mensaje':$scope.mensaje 
+            };
+        $http.post("controles/post_mensajes.php",data
+                ).success(function () {
+                });
+          };
+});
 var markers = [];
 function mapas(){
 //      var mapOptions = {
@@ -31,8 +46,8 @@ function inicio(loca) {
 
 
 
-    var str = loca ;"document.getElementById('Localizacion').value";
-    
+    var str = document.getElementById('Localizacion').value;
+   
     var n = str.search(",");
     var lat = str.substr(0, n);
     var lng = str.substr(n+1);
@@ -76,15 +91,6 @@ function DeleteMarkers() {
     }
     markers = [];
 };
-google.maps.event.addDomListener(window, 'load', inicio);
+//google.maps.event.addDomListener(window, 'load', inicio('-26.167002, -58.186986'));
 //*************************
 
- $(document).ready(function () {
-                $('#coin-slider').coinslider({
-                    delay: 5000,
-                    hoverPause: false,
-                    navigation: true,
-                    width: 550,
-                    height: 290
-                });
-            });
